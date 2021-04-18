@@ -30,6 +30,11 @@ public class PersonServiceImplementation implements PersonService {
 	@Override
 	@POST
 	@Path("/add")
+	// POST - http://localhost:8080/JavaRESTWebServices/person/add
+	/*
+	 * <?xml version="1.0" encoding="UTF-8" standalone="yes"?> <person>
+	 * <age>30</age> <id>1</id> <name>Pankaj</name> </person>
+	 */
 	public Response addPerson(Person p) {
 		Response response = new Response();
 		if (persons.get(p.getId()) != null) {
@@ -44,8 +49,9 @@ public class PersonServiceImplementation implements PersonService {
 	}
 
 	@Override
-	@DELETE
+	@GET
 	@Path("/{id}/delete")
+	// GET - http://localhost:8080/JavaRESTWebServices/person/1/delete
 	public Response deletePerson(@PathParam("id") int id) {
 		Response response = new Response();
 		if (persons.get(id) == null) {
@@ -62,12 +68,14 @@ public class PersonServiceImplementation implements PersonService {
 	@Override
 	@GET
 	@Path("/{id}/get")
+	// GET - http://localhost:8080/JavaRESTWebServices/person/1/get
 	public Person getPerson(@PathParam("id") int id) {
 		return persons.get(id);
 	}
 
 	@GET
 	@Path("/{id}/getDummy")
+	// GET - http://localhost:8080/JavaRESTWebServices/person/99/getDummy
 	public Person getDummyPerson(@PathParam("id") int id) {
 		Person p = new Person();
 		p.setAge(99);
@@ -79,6 +87,7 @@ public class PersonServiceImplementation implements PersonService {
 	@Override
 	@GET
 	@Path("/getAll")
+	// GET - http://localhost:8080/JavaRESTWebServices/person/getAll
 	public Person[] getAllPersons() {
 		Set<Integer> ids = persons.keySet();
 		Person[] p = new Person[ids.size()];
